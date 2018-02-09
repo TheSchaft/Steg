@@ -22,7 +22,7 @@ public class Steg {
 				byte[] a_ray = tok.getBytes("US-ASCII");
 				System.out.println("Token: " + tok);
 				for(byte b: a_ray) {
-					String curbs = String.format("%8s", Integer.toBinaryString(b & 0xFF).replace(' ', '0'));
+					String curbs = String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
 					System.out.println("Curbs: " + curbs);
 					messageBits += curbs.substring(1,curbs.length());
 				}
@@ -31,25 +31,25 @@ public class Steg {
 			}
 			messageBits.replaceAll("\\s","");
 			System.out.println(messageBits);
-			img = ImageIO.read(new File("/u/tschaff/Desktop/Steganography_Project/StegTestImage.bmp"));
+			img = ImageIO.read(new File("C:\\Users\\Taylor\\Desktop\\Steg\\TrainPic.bmp"));
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write(img, "bmp", baos);
 			baos.flush();
 			byte[] imageInByte = baos.toByteArray();
 			baos.close();
-			PrintWriter outputWriter = new PrintWriter("/u/tschaff/Desktop/Steganography_Project/byteArray2.txt");
+			PrintWriter outputWriter = new PrintWriter("C:\\Users\\Taylor\\Desktop\\Steg\\byteArray.txt");
 			int counter;
 			int picByteCounter = 0;
 			for(counter = 0; counter < messageBits.length(); counter += 2) { //modified bitstrings
-				StringBuilder bitString = new StringBuilder(String.format("%8s", Integer.toBinaryString(imageInByte[picByteCounter] & 0xFF).replace(' ', '0'))); //This will represent each bitstring in the message
+				StringBuilder bitString = new StringBuilder(String.format("%8s", Integer.toBinaryString(imageInByte[picByteCounter] & 0xFF)).replace(' ', '0')); //This will represent each bitstring in the message
 				System.out.println("BitString: " + bitString.toString());
 				String firstBit = "" +  messageBits.charAt(counter);
 				String secondBit = "" + messageBits.charAt(counter + 1); //substring format is (inclusive,exclusive)
 				System.out.println("Bits to be added to: " + bitString.toString() + " , " + firstBit + " " + secondBit);
 				bitString.replace(6, 7, firstBit);
 				bitString.replace(7, 8, secondBit);
-				System.out.println(bitString.toString());
-				outputWriter.print(bitString.toString());
+				System.out.println(bitString.toString() + "\n");
+				outputWriter.print(bitString.toString() + " ");
 				picByteCounter++;
 				StringBuilder currentBS = new StringBuilder();
 			}
@@ -57,9 +57,9 @@ public class Steg {
 			//original bitstrings
 			System.out.println(picByteCounter);
 			for(int i = picByteCounter; i < imageInByte.length; i++) {
-				StringBuilder bitString = new StringBuilder(String.format("%8s", Integer.toBinaryString(imageInByte[i] & 0xFF).replace(' ', '0'))); //This will represent each bitstring in the message
+				StringBuilder bitString = new StringBuilder(String.format("%8s", Integer.toBinaryString(imageInByte[i] & 0xFF)).replace(' ', '0')); //This will represent each bitstring in the message
 				
-				outputWriter.print(bitString);
+				outputWriter.print(bitString.toString() + " ");
 			}  
 			outputWriter.close();
 			System.out.println();
