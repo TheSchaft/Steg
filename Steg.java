@@ -2,11 +2,13 @@ import java.awt.image.BufferedImage;
 import java.io.PrintWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.util.Scanner;
 import java.lang.StringBuilder;
 import java.util.ArrayList;
+import java.lang.*;
 
 public class Steg {
 	
@@ -29,7 +31,7 @@ public class Steg {
 				
 				//System.out.println("Bytes: " + Integer.toBinaryString(tok.getBytes("US-ASCII")));
 			}
-			messageBits.replaceAll("\\s","");
+			//messageBits.replaceAll("\\s","");
 			System.out.println(messageBits);
 			img = ImageIO.read(new File("C:\\Users\\Taylor\\Desktop\\Steg\\TrainPic.bmp"));
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -48,6 +50,9 @@ public class Steg {
 				System.out.println("Bits to be added to: " + bitString.toString() + " , " + firstBit + " " + secondBit);
 				bitString.replace(6, 7, firstBit);
 				bitString.replace(7, 8, secondBit);
+				int intRep = Integer.parseInt(bitString.toString(), 2);
+				byte byteRep = (byte)intRep;
+				System.out.println("Byte representation of bit string: " + byteRep);
 				System.out.println(bitString.toString() + "\n");
 				outputWriter.print(bitString.toString() + " ");
 				picByteCounter++;
