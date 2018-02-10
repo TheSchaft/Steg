@@ -1,0 +1,12 @@
+
+The Bad Briyonces
+Briana Bradshaw: bmb3377
+Taylor Schaffner: tls3494
+
+1) Algorithm you plan to try
+LSB
+2) File format you plan to use
+BMP
+3)1-2 paragraph proposal for your project
+
+We plan on trying to implement the Least Significant Bits solution. This seems like the most simple approach, and appears to initially be the easiest approach to take. We will be encoding information onto BMP because we're not yet entirely sure what to do, and the BMP file type seems to be the simplest to modify.
