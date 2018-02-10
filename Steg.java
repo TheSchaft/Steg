@@ -20,6 +20,7 @@ public class Steg {
 		BufferedImage img;
 		try {
 
+			//THIS IS THE MESSAGE TO BE ENCODED, FEEL FREE TO CHANGE IT
 			String msg = "This is a secret message";
 			Scanner strScan = new Scanner(msg);
 			String messageBits = "";
@@ -33,7 +34,7 @@ public class Steg {
 				
 			}
 
-			img = ImageIO.read(new File("/u/tschaff/Desktop/Steganography_Project/StegTestImage.bmp"));
+			img = ImageIO.read(new File(/*INPUT FILE PATH HERE*/"/StegTestImage.bmp"));
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ImageIO.write(img, "bmp", baos);
 			baos.flush();
@@ -61,7 +62,7 @@ public class Steg {
 			}
 
 			//New Steg bmp image
-			File stegPic = new File("NewStegImage.bmp");
+			File stegPic = new File(/*CAN CHANGE FILE NAME IF DESIRED*/"NewStegImage.bmp");
 			FileOutputStream fos = new FileOutputStream(stegPic);
 			fos.write(imageInByte);
 			fos.flush();
